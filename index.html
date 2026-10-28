@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="សំណើសារណាកម្រិតបរិញ្ញាបត្រជាន់ខ្ពស់ ជំនាញ Accounting and Finance ស្តីពីការគ្រប់គ្រងសារពើភណ្ឌ និងលទ្ធផលហិរញ្ញវត្ថុរបស់ផ្សារទំនើបនៅក្រុងព្រះសីហនុ។">
+  <title>សំណើសារណា | Inventory Management and Financial Performance</title>
+  <style>
+    :root {
+      --navy: #17324d;
+      --blue: #246b8e;
+      --teal: #287c78;
+      --gold: #d6a84f;
+      --ink: #243344;
+      --muted: #5d6b78;
+      --line: #d8e1e8;
+      --paper: #ffffff;
+      --wash: #f3f7fa;
+      --soft-blue: #eaf3f8;
+      --soft-teal: #eaf6f3;
+      --soft-gold: #fbf5e8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #edf2f5;
+      color: var(--ink);
+      font-family: "Noto Sans Khmer", "Khmer OS System", "Khmer OS", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 1120px; margin: 0 auto; background: var(--paper); box-shadow: 0 10px 34px rgba(21, 46, 67, .09); }
+    .hero {
+      min-height: 470px;
+      padding: 72px 8% 56px;
+      color: #fff;
+      background: linear-gradient(135deg, #17324d 0%, #246b8e 66%, #287c78 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: -85px; bottom: -150px; width: 380px; height: 380px;
+      border: 1px solid rgba(255,255,255,.2); border-radius: 50%; box-shadow: 0 0 0 36px rgba(255,255,255,.04), 0 0 0 78px rgba(255,255,255,.035);
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; color: #d6e8f0; font-weight: 700; }
+    .hero h1 { max-width: 850px; font-size: clamp(1.8rem, 4vw, 2.65rem); line-height: 1.5; margin: 18px 0 20px; color: #fff; }
+    .hero .english { font-size: clamp(1.15rem, 2.3vw, 1.55rem); line-height: 1.55; max-width: 900px; font-weight: 700; color: #f6fbff; }
+    .hero .sub { margin-top: 30px; color: #e2edf3; }
+    .hero .tag { display: inline-block; margin-top: 22px; border: 1px solid rgba(255,255,255,.45); padding: 6px 13px; border-radius: 999px; font-size: .9rem; }
+    .utility { position: sticky; top: 0; z-index: 10; display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 5%; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+    .utility .brand { font-weight: 700; color: var(--navy); font-size: .9rem; }
+    .utility .actions { display: flex; gap: 8px; }
+    .btn { font: inherit; border: 1px solid var(--line); background: white; color: var(--navy); padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: .9rem; }
+    .btn.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .layout { display: grid; grid-template-columns: 255px minmax(0, 1fr); align-items: start; }
+    aside { padding: 30px 20px 45px 27px; background: #f8fafb; border-right: 1px solid var(--line); position: sticky; top: 53px; max-height: calc(100vh - 53px); overflow: auto; }
+    aside h2 { color: var(--navy); font-size: 1rem; margin: 0 0 14px; }
+    aside ol { padding-left: 23px; margin: 0; font-size: .86rem; line-height: 1.65; }
+    aside li { margin: 7px 0; }
+    main { min-width: 0; padding: 36px clamp(20px, 4.2vw, 55px) 60px; }
+    section { margin-bottom: 48px; scroll-margin-top: 85px; }
+    h2.section-title { color: var(--navy); font-size: clamp(1.35rem, 2.3vw, 1.7rem); line-height: 1.55; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--line); }
+    h2.section-title .num { display: inline-grid; place-items: center; width: 37px; height: 37px; margin-right: 7px; background: var(--navy); color: #fff; border-radius: 10px; font-size: 1.05rem; }
+    h3 { font-size: 1.12rem; color: var(--blue); margin: 25px 0 9px; line-height: 1.6; }
+    h4 { font-size: 1rem; color: var(--navy); margin: 18px 0 6px; }
+    p { margin: 9px 0 14px; }
+    ul, ol { padding-left: 28px; }
+    li { margin: 5px 0; }
+    .lead { font-size: 1.08rem; }
+    .callout { padding: 16px 18px; border-left: 4px solid var(--teal); background: var(--soft-teal); border-radius: 0 10px 10px 0; margin: 18px 0; }
+    .notice { padding: 16px 18px; border-left: 4px solid var(--gold); background: var(--soft-gold); border-radius: 0 10px 10px 0; margin: 18px 0; }
+    .info { padding: 16px 18px; border-left: 4px solid var(--blue); background: var(--soft-blue); border-radius: 0 10px 10px 0; margin: 18px 0; }
+    .title-card { background: var(--wash); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin: 18px 0; }
+    .title-card .label { font-size: .82rem; font-weight: 700; letter-spacing: .04em; color: var(--teal); }
+    .title-card .km-title { font-size: 1.17rem; font-weight: 700; color: var(--navy); line-height: 1.9; margin: 6px 0 18px; }
+    .title-card .en-title { font-family: Arial, sans-serif; color: var(--navy); font-size: 1.1rem; line-height: 1.65; font-weight: 700; margin-top: 6px; }
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .mini-card { border: 1px solid var(--line); padding: 16px; border-radius: 12px; background: #fff; }
+    .mini-card h3 { margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: .94rem; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; vertical-align: top; text-align: left; }
+    th { background: var(--soft-blue); color: var(--navy); font-weight: 700; }
+    tr:nth-child(even) td { background: #fbfcfd; }
+    .framework { display: grid; gap: 12px; max-width: 720px; margin: 24px auto; }
+    .framework-box { border: 1px solid #bfd3df; border-radius: 12px; padding: 17px 18px; text-align: center; }
+    .framework-box.iv { background: var(--soft-blue); }
+    .framework-box.dv { background: var(--soft-teal); border-color: #b9d8ce; }
+    .framework-box strong { display: block; color: var(--navy); margin-bottom: 8px; }
+    .framework-arrow { font-size: 1.7rem; text-align: center; line-height: 1; color: var(--teal); }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+    .chip { border: 1px solid #bdd2df; padding: 5px 10px; background: #fff; border-radius: 999px; font-size: .9rem; }
+    .question { padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; margin: 10px 0; background: #fff; }
+    .scale { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 6px; margin: 12px 0; }
+    .scale span { text-align: center; padding: 9px 4px; border-radius: 8px; background: var(--wash); border: 1px solid var(--line); font-size: .82rem; }
+    .formula { background: #f7f9fb; border: 1px dashed #a7bac7; border-radius: 9px; padding: 14px; overflow-wrap: anywhere; font-family: Arial, sans-serif; line-height: 1.7; text-align: center; }
+    .checklist label { display: flex; align-items: flex-start; gap: 9px; padding: 7px 0; }
+    .checklist input { margin-top: 7px; accent-color: var(--teal); }
+    .small { color: var(--muted); font-size: .9rem; }
+    .muted { color: var(--muted); }
+    .chapter { border: 1px solid var(--line); border-radius: 12px; margin: 14px 0; overflow: hidden; }
+    .chapter summary { cursor: pointer; background: var(--wash); padding: 13px 16px; color: var(--navy); font-weight: 700; }
+    .chapter .inside { padding: 8px 20px 16px; }
+    footer { background: var(--navy); color: #e8f0f5; padding: 26px 8%; font-size: .9rem; }
+    footer strong { color: #fff; }
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 24px; }
+      aside ol { columns: 2; column-gap: 24px; }
+      main { padding: 28px 22px 45px; }
+      .two-col { grid-template-columns: 1fr; }
+      .hero { min-height: 0; padding: 52px 7% 42px; }
+      .utility .brand { display: none; }
+      .utility { justify-content: flex-end; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 15px; }
+      aside ol { columns: 1; }
+      .scale { grid-template-columns: 1fr; }
+      th, td { padding: 8px; }
+      .hero h1 { font-size: 1.65rem; }
+      .utility .actions { width: 100%; justify-content: space-between; }
+    }
+    @media print {
+      body { background: #fff; font-size: 11pt; }
+      .page { max-width: none; box-shadow: none; }
+      .utility, aside, .no-print { display: none !important; }
+      .layout { display: block; }
+      main { padding: 0; }
+      .hero { min-height: auto; padding: 35px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      section { break-inside: avoid; margin-bottom: 26px; }
+      h2, h3 { break-after: avoid; }
+      table { break-inside: auto; }
+      tr { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+      details { break-inside: avoid; }
+      details > * { display: block !important; }
+      footer { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="eyebrow">Master’s Thesis Proposal • Accounting &amp; Finance</div>
+      <h1>សំណើសារណាសម្រាប់ថ្នាក់បរិញ្ញាបត្រជាន់ខ្ពស់<br>ជំនាញគណនេយ្យ និងហិរញ្ញវត្ថុ</h1>
+      <div class="english">Inventory Management Practices and Their Relationship with Perceived Financial Performance of Supermarkets in Sihanoukville, Cambodia</div>
+      <p class="sub">ចំណងជើងជាភាសាខ្មែរ៖ ការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌ និងទំនាក់ទំនងរបស់វាជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញរបស់ផ្សារទំនើបនៅក្រុងព្រះសីហនុ ប្រទេសកម្ពុជា</p>
+      <span class="tag">Draft Proposal — កែសម្រួលតាមគោលការណ៍សាកលវិទ្យាល័យ</span>
+    </header>
+
+    <div class="utility no-print">
+      <div class="brand">សំណើសារណា | Accounting &amp; Finance</div>
+      <div class="actions">
+        <button class="btn" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">ឡើងលើ ↑</button>
+        <button class="btn primary" onclick="window.print()">បោះពុម្ព / Save as PDF</button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="no-print">
+        <h2>មាតិកា</h2>
+        <ol>
+          <li><a href="#guide">របៀបប្រើឯកសារ</a></li>
+          <li><a href="#topic">ចំណងជើង និងជម្រើស</a></li>
+          <li><a href="#background">សាវតា និងបញ្ហាស្រាវជ្រាវ</a></li>
+          <li><a href="#objectives">គោលបំណង</a></li>
+          <li><a href="#questions">សំណួរស្រាវជ្រាវ</a></li>
+          <li><a href="#scope">វិសាលភាព និងសារៈសំខាន់</a></li>
+          <li><a href="#literature">អក្សរសិល្ប៍ និងទ្រឹស្តី</a></li>
+          <li><a href="#framework">ក្របខណ្ឌ និងអថេរ</a></li>
+          <li><a href="#hypotheses">សម្មតិកម្ម</a></li>
+          <li><a href="#methodology">វិធីសាស្ត្រ</a></li>
+          <li><a href="#questionnaire">កម្រងសំណួរគំរូ</a></li>
+          <li><a href="#chapters">គ្រោងជំពូកទាំង ៥</a></li>
+          <li><a href="#ethics">ក្រមសីលធម៌</a></li>
+          <li><a href="#limitations">ដែនកំណត់</a></li>
+          <li><a href="#timeline">ផែនការការងារ</a></li>
+          <li><a href="#company-letter">លិខិតសុំចូលស្រាវជ្រាវ</a></li>
+          <li><a href="#checklist">បញ្ជីត្រួតពិនិត្យ</a></li>
+        </ol>
+      </aside>
+
+      <main>
+        <section id="guide">
+          <h2 class="section-title"><span class="num">0</span>របៀបប្រើឯកសារនេះ</h2>
+          <p class="lead">ឯកសារនេះជាគំរូសំណើសារណាដំបូង សម្រាប់និស្សិតថ្នាក់បរិញ្ញាបត្រជាន់ខ្ពស់ ជំនាញ Accounting and Finance។ អាចប្រើជាមូលដ្ឋានសម្រាប់រៀបចំ Proposal និងពិភាក្សាជាមួយគ្រូណែនាំ។</p>
+          <div class="notice"><strong>ចំណាំសំខាន់៖</strong> ឯកសារនេះមិនមែនជាលទ្ធផលស្រាវជ្រាវដែលបានបញ្ចប់ទេ។ មិនទាន់មានទិន្នន័យប្រមូលបានពីផ្សារទំនើប ឬ Foody KPS Supermarket ឡើយ។ កុំសរសេរលទ្ធផល ស្ថិតិ ឬសេចក្តីសន្និដ្ឋានជាលទ្ធផលពិត មុនពេលប្រមូល និងវិភាគទិន្នន័យ។ ត្រូវកែសម្រួលតាមទម្រង់ សេចក្តីណែនាំ និងបទដ្ឋានសីលធម៌របស់សាកលវិទ្យាល័យ។</div>
+          <p>ដោយសារមិនទាន់មានការអនុញ្ញាតពី Foody KPS Supermarket ប្រធានបទស្នើឱ្យសិក្សាផ្សារទំនើបច្រើននៅក្រុងព្រះសីហនុ។ Foody KPS អាចត្រូវបានបញ្ចូលជាផ្នែកមួយនៃគំរូស្រាវជ្រាវ ប្រសិនបើទទួលបានការយល់ព្រម និងអាចចូលដល់អ្នកឆ្លើយសំណួរបាន។</p>
+        </section>
+
+        <section id="topic">
+          <h2 class="section-title"><span class="num">1</span>ចំណងជើងសារណា</h2>
+          <div class="title-card">
+            <div class="label">ចំណងជើងជាភាសាខ្មែរ</div>
+            <div class="km-title">«ការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌ និងទំនាក់ទំនងរបស់វាជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញរបស់ផ្សារទំនើបនៅក្រុងព្រះសីហនុ ប្រទេសកម្ពុជា»</div>
+            <div class="label">ENGLISH TITLE</div>
+            <div class="en-title">“Inventory Management Practices and Their Relationship with Perceived Financial Performance of Supermarkets in Sihanoukville, Cambodia”</div>
+            <p class="small">ចំណងជើងនេះជាជម្រើសដែលណែនាំ ព្រោះវាមិនចាំបាច់ពឹងផ្អែកលើរបាយការណ៍ហិរញ្ញវត្ថុសម្ងាត់របស់ក្រុមហ៊ុនតែមួយ ហើយអាចប្រមូលទិន្នន័យតាមស្ទង់មតិបាន ប្រសិនបើមានការអនុញ្ញាត។</p>
+          </div>
+          <h3>ហេតុផលក្នុងការជ្រើសរើសប្រធានបទ</h3>
+          <ul>
+            <li><strong>ពាក់ព័ន្ធនឹង Accounting៖</strong> សារពើភណ្ឌជាធាតុសំខាន់ក្នុងការគណនាថ្លៃដើមទំនិញលក់ ការកត់ត្រាទំនិញខូចខាត និងភាពត្រឹមត្រូវនៃរបាយការណ៍ហិរញ្ញវត្ថុ។</li>
+            <li><strong>ពាក់ព័ន្ធនឹង Finance៖</strong> ស្តុកទំនិញប្រើប្រាស់ដើមទុនបង្វិល ហើយការរក្សាស្តុកច្រើនពេក ឬតិចពេកអាចប៉ះពាល់ដល់សាច់ប្រាក់ និងដំណើរការអាជីវកម្ម។</li>
+            <li><strong>សមស្របនឹងផ្សារទំនើប៖</strong> មានប្រភេទទំនិញច្រើន ការបង្វិលស្តុក ការគ្រប់គ្រងកាលបរិច្ឆេទផុតកំណត់ និងការបញ្ជាទិញពីអ្នកផ្គត់ផ្គង់។</li>
+            <li><strong>អាចអនុវត្តបាន៖</strong> អាចប្រើកម្រងសំណួរ និងសម្ភាសន៍បុគ្គលិកដែលពាក់ព័ន្ធ ដោយមិនចាំបាច់ទាមទារប្រាក់ចំណេញជាក់ស្តែងរបស់ក្រុមហ៊ុនតាំងពីដំបូង។</li>
+            <li><strong>សមស្របនឹងសារណាកម្រិត Master’s៖</strong> អាចបង្កើតក្របខណ្ឌគំនិត សាកល្បងសម្មតិកម្ម និងអនុវត្តការវិភាគស្ថិតិតាមគុណភាពទិន្នន័យដែលប្រមូលបាន។</li>
+          </ul>
+          <h3>ជម្រើសបើទទួលបានការអនុញ្ញាតពី Foody KPS</h3>
+          <div class="info"><strong>Alternative case-study title:</strong><br><span style="font-family:Arial,sans-serif;font-weight:700">“Inventory Management Practices and Their Perceived Implications for Profitability: A Case Study of Foody KPS Supermarket”</span><br><br>ភាសាខ្មែរ៖ «ការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌ និងឥទ្ធិពលតាមការយល់ឃើញរបស់វាលើប្រាក់ចំណេញ៖ ករណីសិក្សានៅ Foody KPS Supermarket»។ ប្រើចំណងជើងនេះតែបន្ទាប់ពីក្រុមហ៊ុនយល់ព្រម និងអ្នកអាចទទួលបានទិន្នន័យគ្រប់គ្រាន់។</div>
+        </section>
+
+        <section id="background">
+          <h2 class="section-title"><span class="num">2</span>សាវតា និងបញ្ហានៃការស្រាវជ្រាវ</h2>
+          <h3>2.1 សាវតានៃការសិក្សា</h3>
+          <p>សារពើភណ្ឌជាធាតុសំខាន់ក្នុងអាជីវកម្មលក់រាយ ព្រោះវារួមមានទំនិញដែលត្រៀមសម្រាប់លក់ និងទំនិញដែលកំពុងស្ថិតក្នុងដំណើរការទទួលចូល ឬរក្សាទុក។ ការគ្រប់គ្រងសារពើភណ្ឌមានគោលបំណងធានាថាទំនិញមានគ្រប់គ្រាន់សម្រាប់អតិថិជន ខណៈពេលដែលកាត់បន្ថយការចំណាយលើការរក្សាស្តុក ការខូចខាត ការបាត់បង់ និងការទិញទំនិញលើសតម្រូវការ។</p>
+          <p>ក្នុងទស្សនៈគណនេយ្យ ការកំណត់បរិមាណ និងតម្លៃស្តុកឱ្យត្រឹមត្រូវជួយឱ្យការគណនាថ្លៃដើមទំនិញលក់ និងការបង្ហាញសារពើភណ្ឌក្នុងរបាយការណ៍ហិរញ្ញវត្ថុមានភាពត្រឹមត្រូវ។ ក្នុងទស្សនៈហិរញ្ញវត្ថុ ការគ្រប់គ្រងស្តុកជួយឱ្យអាជីវកម្មប្រើប្រាស់ដើមទុនបង្វិលបានល្អ និងគ្រប់គ្រងសាច់ប្រាក់សម្រាប់ការទូទាត់ទៅអ្នកផ្គត់ផ្គង់ និងចំណាយប្រតិបត្តិការផ្សេងៗ។</p>
+          <p>ទោះជាយ៉ាងណា ប្រសិទ្ធភាពនៃការគ្រប់គ្រងសារពើភណ្ឌអាចខុសគ្នាទៅតាមប្រព័ន្ធកត់ត្រា ការបណ្តុះបណ្តាលបុគ្គលិក ការត្រួតពិនិត្យផ្ទៃក្នុង ប្រភេទទំនិញ និងការគ្រប់គ្រងការបញ្ជាទិញ។ ដូច្នេះ ការសិក្សានេះមានបំណងពិនិត្យការអនុវត្តទាំងនេះ និងទំនាក់ទំនងរបស់វាជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញរបស់អ្នកឆ្លើយសំណួរ នៅផ្សារទំនើបក្នុងក្រុងព្រះសីហនុ។</p>
+          <h3>2.2 បញ្ហានៃការស្រាវជ្រាវ</h3>
+          <p>បញ្ហាដែលអាជីវកម្មលក់រាយអាចជួបប្រទះរួមមាន ភាពខុសគ្នារវាងស្តុកក្នុងប្រព័ន្ធ និងស្តុកជាក់ស្តែង ការបញ្ជាទិញទំនិញច្រើនជាងតម្រូវការ ការខ្វះស្តុក ការខូចខាត ឬផុតកំណត់ ការខាតបង់ពីការរក្សាទុក និងការខ្វះព័ត៌មានត្រឹមត្រូវសម្រាប់សម្រេចចិត្ត។ ប្រសិនបើបញ្ហាទាំងនេះមិនត្រូវបានគ្រប់គ្រងបានល្អ វាអាចបង្កើនចំណាយ និងធ្វើឱ្យអ្នកគ្រប់គ្រងមានការលំបាកក្នុងការធ្វើផែនការហិរញ្ញវត្ថុ។</p>
+          <p>យ៉ាងណាក៏ដោយ មិនគួរសន្និដ្ឋានជាមុនថាបញ្ហាទាំងនេះកំពុងកើតឡើងនៅ Foody KPS ឬផ្សារទំនើបណាមួយឡើយ។ ការស្រាវជ្រាវត្រូវប្រមូលភស្តុតាងជាក់ស្តែង ដើម្បីវាយតម្លៃការអនុវត្ត និងទំនាក់ទំនងរវាងអថេរ។</p>
+          <h3>2.3 ការកំណត់បញ្ហាស្នូល</h3>
+          <p>បញ្ហាស្នូលគឺថាតើការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌនៅផ្សារទំនើបក្នុងក្រុងព្រះសីហនុមានកម្រិតយ៉ាងដូចម្តេច ហើយតើការអនុវត្តនេះមានទំនាក់ទំនងជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញរបស់អ្នកគ្រប់គ្រង និងបុគ្គលិកពាក់ព័ន្ធដែរឬទេ។</p>
+        </section>
+
+        <section id="objectives">
+          <h2 class="section-title"><span class="num">3</span>គោលបំណងនៃការស្រាវជ្រាវ</h2>
+          <h3>3.1 គោលបំណងទូទៅ</h3>
+          <p>ដើម្បីសិក្សាពីការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌ និងវិភាគទំនាក់ទំនងរបស់វាជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញរបស់ផ្សារទំនើបនៅក្រុងព្រះសីហនុ ប្រទេសកម្ពុជា។</p>
+          <h3>3.2 គោលបំណងជាក់លាក់</h3>
+          <ol>
+            <li>សិក្សាពីការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌនៅតាមផ្សារទំនើបក្នុងតំបន់សិក្សា។</li>
+            <li>វាយតម្លៃការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌតាមផ្នែកសំខាន់ៗ រួមមានភាពត្រឹមត្រូវនៃកំណត់ត្រាស្តុក ការបញ្ជាទិញទំនិញ ការគ្រប់គ្រងទំនិញខូចខាត និងការត្រួតពិនិត្យទំនិញផុតកំណត់។</li>
+            <li>វិភាគទំនាក់ទំនងរវាងការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌ និងលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញរបស់អ្នកឆ្លើយសំណួរ។</li>
+            <li>ផ្តល់អនុសាសន៍សម្រាប់កែលម្អការគ្រប់គ្រងសារពើភណ្ឌ និងការគ្រប់គ្រងថ្លៃដើមនៅក្នុងផ្សារទំនើប។</li>
+          </ol>
+        </section>
+
+        <section id="questions">
+          <h2 class="section-title"><span class="num">4</span>សំណួរស្រាវជ្រាវ</h2>
+          <ol>
+            <li>តើផ្សារទំនើបនៅក្រុងព្រះសីហនុអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌយ៉ាងដូចម្តេច?</li>
+            <li>តើការគ្រប់គ្រងកំណត់ត្រាស្តុក ការបញ្ជាទិញទំនិញ និងការកាត់បន្ថយទំនិញខូចខាតមានកម្រិតប្រសិទ្ធភាពយ៉ាងដូចម្តេច?</li>
+            <li>តើការអនុវត្តការគ្រប់គ្រងសារពើភណ្ឌមានទំនាក់ទំនងយ៉ាងដូចម្តេចជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ?</li>
+            <li>តើវិធានការអ្វីខ្លះអាចជួយកែលម្អការគ្រប់គ្រងសារពើភណ្ឌ និងកាត់បន្ថយការចំណាយ?</li>
+          </ol>
+        </section>
+
+        <section id="scope">
+          <h2 class="section-title"><span class="num">5</span>វិសាលភាព ដែនកំណត់ និងសារៈសំខាន់</h2>
+          <h3>5.1 វិសាលភាពទីតាំង</h3>
+          <p>តំបន់សិក្សាគឺក្រុងព្រះសីហនុ ប្រទេសកម្ពុជា។ គំរូគួររួមបញ្ចូលផ្សារទំនើប ឬអាជីវកម្មលក់រាយដែលមានសកម្មភាពគ្រប់គ្រងសារពើភណ្ឌ និងអាចផ្តល់ការយល់ព្រមឱ្យចូលរួមក្នុងការស្រាវជ្រាវ។ Foody KPS Supermarket អាចត្រូវបានអញ្ជើញចូលរួម ប្រសិនបើទទួលបានការអនុញ្ញាត ប៉ុន្តែមិនគួរអះអាងថាជាគំរូស្រាវជ្រាវមុនពេលមានការយល់ព្រមនោះទេ។</p>
+          <h3>5.2 វិសាលភាពមាតិកា</h3>
+          <ul>
+            <li>ភាពត្រឹមត្រូវ និងការកត់ត្រាទិន្នន័យស្តុក។</li>
+            <li>ការធ្វើផែនការបញ្ជាទិញ និងការបំពេញស្តុក។</li>
+            <li>ការត្រួតពិនិត្យស្តុកជាក់ស្តែង និងការផ្ទៀងផ្ទាត់ជាមួយប្រព័ន្ធ។</li>
+            <li>ការគ្រប់គ្រងទំនិញខូចខាត បាត់បង់ និងផុតកំណត់។</li>
+            <li>ការយល់ឃើញអំពីការគ្រប់គ្រងចំណាយ ការកាត់បន្ថយការខាតបង់ និងលទ្ធផលហិរញ្ញវត្ថុ។</li>
+          </ul>
+          <h3>5.3 ប្រជាជនគោលដៅ</h3>
+          <p>ម្ចាស់អាជីវកម្ម អ្នកគ្រប់គ្រង អ្នកគ្រប់គ្រងស្តុក អ្នកទទួលខុសត្រូវផ្នែកទិញទំនិញ បុគ្គលិកគណនេយ្យ ឬហិរញ្ញវត្ថុ និងបុគ្គលិកដែលចូលរួមដោយផ្ទាល់ក្នុងដំណើរការសារពើភណ្ឌ។ ត្រូវកំណត់លក្ខខណ្ឌចូលរួមឱ្យច្បាស់ ដើម្បីឱ្យអ្នកឆ្លើយសំណួរមានបទពិសោធន៍ពាក់ព័ន្ធ។</p>
+          <h3>5.4 សារៈសំខាន់នៃការសិក្សា</h3>
+          <div class="two-col">
+            <div class="mini-card"><h3>សម្រាប់អ្នកគ្រប់គ្រង</h3><p>ជួយកំណត់ផ្នែកដែលអាចកែលម្អក្នុងការគ្រប់គ្រងស្តុក ការកាត់បន្ថយការខាតបង់ និងការរៀបចំការបញ្ជាទិញ។</p></div>
+            <div class="mini-card"><h3>សម្រាប់ Accounting &amp; Finance</h3><p>បង្ហាញទំនាក់ទំនងរវាងកំណត់ត្រាស្តុក ថ្លៃដើមទំនិញលក់ ដើមទុនបង្វិល និងការសម្រេចចិត្តហិរញ្ញវត្ថុ។</p></div>
+            <div class="mini-card"><h3>សម្រាប់អ្នកសិក្សា</h3><p>អនុវត្តការរៀបចំស្រាវជ្រាវ ការវាស់វែងអថេរ ការប្រមូលទិន្នន័យ និងការវិភាគស្ថិតិ។</p></div>
+            <div class="mini-card"><h3>សម្រាប់ការសិក្សាបន្ត</h3><p>អាចផ្តល់មូលដ្ឋានសម្រាប់ការស្រាវជ្រាវនាពេលអនាគត ដែលប្រើទិន្នន័យគណនេយ្យ ឬសូចនាករហិរញ្ញវត្ថុជាក់ស្តែង។</p></div>
+          </div>
+        </section>
+
+        <section id="literature">
+          <h2 class="section-title"><span class="num">6</span>ការពិនិត្យអក្សរសិល្ប៍ និងទ្រឹស្តីពាក់ព័ន្ធ</h2>
+          <p>ជំពូកនេះត្រូវសរសេរដោយប្រើសៀវភៅ អត្ថបទស្រាវជ្រាវ និងស្តង់ដារដែលអាចផ្ទៀងផ្ទាត់បាន។ ខាងក្រោមជាប្រធានបទស្នូលសម្រាប់ស្វែងរកប្រភព និងរៀបចំការពិនិត្យអក្សរសិល្ប៍។ កុំដាក់ឯកសារយោងដែលមិនបានអាន ឬមិនអាចផ្ទៀងផ្ទាត់ព័ត៌មានបោះពុម្ពបាន។</p>
+          <h3>6.1 គោលគំនិតសារពើភណ្ឌ</h3>
+          <p>ពន្យល់និយមន័យ សារពើភណ្ឌក្នុងអាជីវកម្មលក់រាយ ប្រភេទទំនិញក្នុងស្តុក និងតួនាទីរបស់សារពើភណ្ឌក្នុងប្រតិបត្តិការ។ ពិភាក្សាអំពីភាពខុសគ្នារវាងការរក្សាស្តុកសម្រាប់បំពេញតម្រូវការ និងការរក្សាស្តុកលើសកម្រិតដែលធ្វើឱ្យមានចំណាយបន្ថែម។</p>
+          <h3>6.2 ការគ្រប់គ្រងសារពើភណ្ឌ</h3>
+          <p>សិក្សាវិធីសាស្ត្រដូចជា ការត្រួតពិនិត្យស្តុកជាប្រចាំ ការរាប់ស្តុកជាក់ស្តែង ការប្រើប្រព័ន្ធ POS ឬប្រព័ន្ធគ្រប់គ្រងស្តុក ការប៉ាន់ប្រមាណតម្រូវការ ការកំណត់កម្រិតបញ្ជាទិញឡើងវិញ និងការអនុវត្ត FIFO ឬ FEFO នៅពេលសមស្របនឹងប្រភេទទំនិញ។</p>
+          <h3>6.3 គណនេយ្យសារពើភណ្ឌ និងថ្លៃដើម</h3>
+          <p>ពិនិត្យគោលការណ៍ទាក់ទងនឹងការវាស់វែងថ្លៃដើមសារពើភណ្ឌ ការកំណត់តម្លៃស្តុក និងការទទួលស្គាល់ការខាតបង់។ ត្រូវពិគ្រោះជាមួយគ្រូណែនាំអំពីស្តង់ដារគណនេយ្យដែលសមស្របនឹងប្រភេទអាជីវកម្ម និងបរិបទប្រទេសកម្ពុជា។</p>
+          <h3>6.4 ដើមទុនបង្វិល និងលទ្ធផលហិរញ្ញវត្ថុ</h3>
+          <p>ពន្យល់ទំនាក់ទំនងរវាងសារពើភណ្ឌ សាច់ប្រាក់ បំណុលត្រូវសង និងការប្រមូលចំណូល។ ការរក្សាស្តុកច្រើនអាចចាក់សោដើមទុន ខណៈការរក្សាស្តុកតិចពេកអាចបង្កការខកខានលក់។ គួរប្រៀបធៀបទស្សនៈទាំងពីរ ដោយមិនសន្និដ្ឋានថាស្តុកតិចគឺល្អជាងជានិច្ច។</p>
+          <h3>6.5 ការស្រាវជ្រាវមុនៗ និងចន្លោះស្រាវជ្រាវ</h3>
+          <p>ស្វែងរកការស្រាវជ្រាវទាក់ទងនឹងអាជីវកម្មលក់រាយ សារពើភណ្ឌ និងលទ្ធផលហិរញ្ញវត្ថុ។ សង្ខេបគោលបំណង វិធីសាស្ត្រ គំរូ អថេរ និងលទ្ធផលសំខាន់ៗរបស់ការសិក្សានីមួយៗ។ ចន្លោះស្រាវជ្រាវគួរត្រូវបានបង្កើតឡើងដោយផ្អែកលើភស្តុតាងពីឯកសារដែលបានពិនិត្យ មិនមែនសរសេរថា “មិនមានអ្នកណាសិក្សា” ដោយគ្មានការស្វែងរកគ្រប់គ្រាន់ទេ។</p>
+          <h3>6.6 ប្រភពដែលគួរចាប់ផ្តើមស្វែងរក</h3>
+          <ul>
+            <li>ស្តង់ដារគណនេយ្យដែលពាក់ព័ន្ធនឹង Inventories (ឧទាហរណ៍ IAS 2 ប្រសិនបើសមស្របនឹងគោលការណ៍សិក្សា)។</li>
+            <li>អត្ថបទស្រាវជ្រាវដែលមានការវាយតម្លៃដោយអ្នកជំនាញ (peer-reviewed) អំពី inventory management, working capital management និង financial performance។</li>
+            <li>សៀវភៅស្រាវជ្រាវអំពី Research Methodology, questionnaire design និង statistical analysis។</li>
+            <li>ឯកសារ ឬរបាយការណ៍សាធារណៈដែលអាចផ្ទៀងផ្ទាត់បាន ពាក់ព័ន្ធនឹងអាជីវកម្មលក់រាយនៅកម្ពុជា ប្រសិនបើមាន។</li>
+          </ul>
+          <div class="notice"><strong>សម្រាប់ឯកសារយោង៖</strong> បំពេញបញ្ជី References បន្ទាប់ពីអ្នកបានពិនិត្យប្រភពពិតប្រាកដ ហើយរៀបចំតាមស្តង់ដារដែលសាកលវិទ្យាល័យកំណត់ ដូចជា APA ឬ Harvard។ មិនគួរបង្កើតឈ្មោះអ្នកនិពន្ធ ចំណងជើង ឬលេខទំព័រដែលមិនបានផ្ទៀងផ្ទាត់ឡើយ។</div>
+        </section>
+
+        <section id="framework">
+          <h2 class="section-title"><span class="num">7</span>ក្របខណ្ឌគំនិត និងនិយមន័យអថេរ</h2>
+          <h3>7.1 ក្របខណ្ឌគំនិតស្រាវជ្រាវ</h3>
+          <div class="framework">
+            <div class="framework-box iv">
+              <strong>អថេរឯករាជ្យ (Independent Variables)</strong>
+              <div class="chips">
+                <span class="chip">ភាពត្រឹមត្រូវនៃកំណត់ត្រាស្តុក</span>
+                <span class="chip">ផែនការបញ្ជាទិញ</span>
+                <span class="chip">ការគ្រប់គ្រងទំនិញខូច/ផុតកំណត់</span>
+                <span class="chip">ការត្រួតពិនិត្យស្តុក</span>
+              </div>
+            </div>
+            <div class="framework-arrow">↓</div>
+            <div class="framework-box dv">
+              <strong>អថេរអាស្រ័យ (Dependent Variable)</strong>
+              លទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ<br>
+              <span class="small">ការគ្រប់គ្រងចំណាយ • ការកាត់បន្ថយការខាតបង់ • ការយល់ឃើញអំពីប្រាក់ចំណេញ</span>
+            </div>
+          </div>
+          <p>អថេរគ្រប់គ្រងដែលអាចពិចារណា៖ ទំហំអាជីវកម្ម អាយុកាលប្រតិបត្តិការ ប្រភេទប្រព័ន្ធគ្រប់គ្រងស្តុក និងកម្រិតប្រើប្រាស់ប្រព័ន្ធគណនេយ្យ។ ជ្រើសរើសតែអថេរដែលអាចវាស់វែងបាន និងសមស្របនឹងទិន្នន័យ។</p>
+          <h3>7.2 និយមន័យប្រតិបត្តិការរបស់អថេរ</h3>
+          <table>
+            <thead><tr><th>អថេរ</th><th>អត្ថន័យ / របៀបវាស់វែងដែលស្នើ</th><th>ប្រភេទ</th></tr></thead>
+            <tbody>
+              <tr><td>ភាពត្រឹមត្រូវនៃកំណត់ត្រាស្តុក</td><td>ការយល់ឃើញថាកំណត់ត្រាស្តុកក្នុងប្រព័ន្ធត្រូវគ្នានឹងស្តុកជាក់ស្តែង និងមានការកត់ត្រាចូល/ចេញទាន់ពេល។</td><td>អថេរឯករាជ្យ</td></tr>
+              <tr><td>ផែនការបញ្ជាទិញ និងបំពេញស្តុក</td><td>ការប្រើប្រាស់ព័ត៌មានលក់ ការកំណត់កម្រិតស្តុក និងការពិនិត្យឡើងវិញមុនបញ្ជាទិញ។</td><td>អថេរឯករាជ្យ</td></tr>
+              <tr><td>ការគ្រប់គ្រងទំនិញខូចខាត/ផុតកំណត់</td><td>ការត្រួតពិនិត្យកាលបរិច្ឆេទ ការញែកទំនិញខូច និងការកត់ត្រាការខាតបង់ពីស្តុក។</td><td>អថេរឯករាជ្យ</td></tr>
+              <tr><td>ការត្រួតពិនិត្យសារពើភណ្ឌ</td><td>ការរាប់ស្តុកជាក់ស្តែង ការអនុម័តលើការកែប្រែកំណត់ត្រា និងការបែងចែកភារកិច្ចតាមសមស្រប។</td><td>អថេរឯករាជ្យ</td></tr>
+              <tr><td>លទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ</td><td>ការយល់ឃើញអំពីការកាត់បន្ថយចំណាយដែលមិនចាំបាច់ ការកាត់បន្ថយការខាតបង់ស្តុក និងការកែលម្អប្រាក់ចំណេញ។</td><td>អថេរអាស្រ័យ</td></tr>
+              <tr><td>ទំហំអាជីវកម្ម / អាយុកាល</td><td>ប្រើប្រភេទទំហំ ឬចំនួនឆ្នាំប្រតិបត្តិការ ប្រសិនបើអាចប្រមូលបានដោយមិនប៉ះពាល់ដល់ការសម្ងាត់។</td><td>អថេរគ្រប់គ្រង (ជាជម្រើស)</td></tr>
+            </tbody>
+          </table>
+          <div class="notice"><strong>ការប្រុងប្រយ័ត្នក្នុងការវាស់វែង៖</strong> កម្រងសំណួរវាស់ “perceived financial performance” មិនដូចនឹងការវាស់ប្រាក់ចំណេញពិតប្រាកដទេ។ ប្រសិនបើពេលក្រោយអាចទទួលបានទិន្នន័យលក់ ចំណាយ ឬរបាយការណ៍ហិរញ្ញវត្ថុដែលបានអនុញ្ញាត អ្នកអាចពិភាក្សាជាមួយគ្រូណែនាំអំពីការកែចំណងជើង និងម៉ូដែលស្រាវជ្រាវ។</div>
+        </section>
+
+        <section id="hypotheses">
+          <h2 class="section-title"><span class="num">8</span>សម្មតិកម្មស្រាវជ្រាវ</h2>
+          <p>សម្មតិកម្មខាងក្រោមជាការស្នើដំបូង ហើយត្រូវពិនិត្យតាមអក្សរសិល្ប៍ មុនពេលប្រើជាផ្លូវការ។</p>
+          <div class="question"><strong>H1:</strong> ភាពត្រឹមត្រូវនៃកំណត់ត្រាស្តុកមានទំនាក់ទំនងវិជ្ជមានជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ។<br><span class="small">Accurate inventory records are positively associated with perceived financial performance.</span></div>
+          <div class="question"><strong>H2:</strong> ការធ្វើផែនការបញ្ជាទិញ និងបំពេញស្តុកមានទំនាក់ទំនងវិជ្ជមានជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ។<br><span class="small">Inventory replenishment and purchasing planning are positively associated with perceived financial performance.</span></div>
+          <div class="question"><strong>H3:</strong> ការគ្រប់គ្រងទំនិញខូចខាត និងផុតកំណត់មានទំនាក់ទំនងវិជ្ជមានជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ។<br><span class="small">Effective control of damaged and expired goods is positively associated with perceived financial performance.</span></div>
+          <div class="question"><strong>H4:</strong> ការត្រួតពិនិត្យសារពើភណ្ឌប្រកបដោយប្រសិទ្ធភាពមានទំនាក់ទំនងវិជ្ជមានជាមួយលទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ។<br><span class="small">Effective inventory monitoring is positively associated with perceived financial performance.</span></div>
+          <p>ពាក្យ “ទំនាក់ទំនង” មិនមានន័យថាអថេរមួយបណ្តាលឱ្យអថេរមួយទៀតដោយផ្ទាល់ទេ។ ការស្ទង់មតិម្តងតែមួយភាគច្រើនអាចបង្ហាញពី association ជាងបញ្ជាក់ causation។</p>
+        </section>
+
+        <section id="methodology">
+          <h2 class="section-title"><span class="num">9</span>វិធីសាស្ត្រស្រាវជ្រាវ</h2>
+          <h3>9.1 រចនាស្រាវជ្រាវ</h3>
+          <p>ស្នើឱ្យប្រើវិធីសាស្ត្របរិមាណ (quantitative approach) ជាមួយការស្ទង់មតិឆ្លងកាត់ពេលវេលាមួយ (cross-sectional survey)។ អាចបន្ថែមសម្ភាសន៍ខ្លីៗជាវិធីសាស្ត្រជំនួយ ប្រសិនបើសមស្របនឹងពេលវេលា និងការអនុញ្ញាត។</p>
+          <h3>9.2 ប្រជាជនគោលដៅ និងគំរូ</h3>
+          <p>ប្រជាជនគោលដៅគឺម្ចាស់អាជីវកម្ម អ្នកគ្រប់គ្រង និងបុគ្គលិកដែលមានបទពិសោធន៍ទាក់ទងនឹងការគ្រប់គ្រងស្តុក ការទិញទំនិញ គណនេយ្យ ឬហិរញ្ញវត្ថុ។ គួរកំណត់លក្ខខណ្ឌចូលរួម ដូចជា មានតួនាទីពាក់ព័ន្ធ និងបានធ្វើការនៅទីតាំងនោះរយៈពេលសមស្រប ដើម្បីអាចឆ្លើយសំណួរដោយផ្អែកលើបទពិសោធន៍។</p>
+          <p><strong>វិធីជ្រើសរើសគំរូ៖</strong> ប្រសិនបើមានបញ្ជីផ្សារទំនើប និងអ្នកដែលអាចឆ្លើយសំណួរបានច្បាស់ អាចពិចារណាការជ្រើសរើសជាក្រុម (stratified sampling) ឬចៃដន្យតាមលទ្ធភាព។ ប្រសិនបើការចូលដល់មានកម្រិត អាចប្រើ purposive sampling ឬ convenience sampling ដោយត្រូវពន្យល់ច្បាស់ពីដែនកំណត់ និងកុំអះអាងថាគំរូតំណាងឱ្យផ្សារទំនើបទាំងអស់។</p>
+          <p><strong>ចំនួនគំរូ៖</strong> កុំកំណត់ចំនួនតាមការស្មាន។ គួរប្រើព័ត៌មានអំពីចំនួនអាជីវកម្ម និងអ្នកឆ្លើយសំណួរដែលអាចចូលដល់ ព្រមទាំងពិភាក្សាជាមួយគ្រូណែនាំអំពីការគណនាចំនួនគំរូ ឬ power analysis សម្រាប់គម្រោងស្ថិតិដែលចង់ប្រើ។</p>
+          <h3>9.3 ប្រភពទិន្នន័យ</h3>
+          <ul>
+            <li><strong>ទិន្នន័យបឋម៖</strong> កម្រងសំណួរពីអ្នកឆ្លើយសំណួរដែលសមស្រប និងសម្ភាសន៍បន្ថែម ប្រសិនបើមានការយល់ព្រម។</li>
+            <li><strong>ទិន្នន័យបន្ទាប់បន្សំ៖</strong> អត្ថបទស្រាវជ្រាវ សៀវភៅ ស្តង់ដារគណនេយ្យ និងឯកសារសាធារណៈដែលអាចផ្ទៀងផ្ទាត់បាន។</li>
+            <li><strong>ឯកសារក្រុមហ៊ុន៖</strong> ប្រើតែប្រសិនបើក្រុមហ៊ុនអនុញ្ញាត និងបានកំណត់ច្បាស់ពីការរក្សាសម្ងាត់។</li>
+          </ul>
+          <h3>9.4 ឧបករណ៍ស្រាវជ្រាវ</h3>
+          <p>កម្រងសំណួរមានផ្នែកព័ត៌មានទូទៅដែលមិនបង្ហាញអត្តសញ្ញាណ ផ្នែកវាស់ការគ្រប់គ្រងស្តុក និងផ្នែកវាស់លទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ។ អាចប្រើ Likert scale ៥ កម្រិត៖ 1 = មិនយល់ស្របទាំងស្រុង, 2 = មិនយល់ស្រប, 3 = មិនប្រាកដ/មធ្យម, 4 = យល់ស្រប, 5 = យល់ស្របទាំងស្រុង។</p>
+          <h3>9.5 ការសាកល្បងកម្រងសំណួរ</h3>
+          <p>មុនប្រមូលទិន្នន័យពេញលេញ គួរឱ្យគ្រូណែនាំ ឬអ្នកដែលមានជំនាញពិនិត្យភាពច្បាស់លាស់នៃសំណួរ។ បន្ទាប់មកធ្វើ pilot test ជាមួយចំនួនតូចដែលស្រដៀងនឹងប្រជាជនគោលដៅ ប្រសិនបើសាកលវិទ្យាល័យអនុញ្ញាត។ កែសម្រួលសំណួរដែលមិនច្បាស់ ឬបណ្តាលឱ្យអ្នកឆ្លើយសំណួរភាន់ច្រឡំ។ ទិន្នន័យ pilot មិនគួរបញ្ចូលជាមួយទិន្នន័យចម្បងដោយស្វ័យប្រវត្តិទេ។</p>
+          <h3>9.6 វិធីសាស្ត្រវិភាគទិន្នន័យ</h3>
+          <table>
+            <thead><tr><th>ដំណាក់កាល</th><th>វិធីសាស្ត្រ</th><th>គោលបំណង</th></tr></thead>
+            <tbody>
+              <tr><td>1. សម្អាតទិន្នន័យ</td><td>ពិនិត្យទិន្នន័យបាត់បង់ កំហុសបញ្ចូល និងចម្លើយមិនសមហេតុផល</td><td>ធានាគុណភាពទិន្នន័យមុនវិភាគ</td></tr>
+              <tr><td>2. ស្ថិតិពិពណ៌នា</td><td>Frequency, Percentage, Mean, Standard Deviation</td><td>ពិពណ៌នាលក្ខណៈអ្នកឆ្លើយសំណួរ និងកម្រិតនៃការអនុវត្ត</td></tr>
+              <tr><td>3. ភាពជឿជាក់</td><td>Cronbach’s alpha ប្រសិនបើសមស្រប</td><td>ពិនិត្យភាពស៊ីសង្វាក់របស់ items ដែលវាស់ construct ដូចគ្នា</td></tr>
+              <tr><td>4. ទំនាក់ទំនង</td><td>Pearson correlation ឬ Spearman correlation អាស្រ័យលើប្រភេទទិន្នន័យ និងលក្ខខណ្ឌ</td><td>វាស់ទិសដៅ និងកម្រិតទំនាក់ទំនងរវាងអថេរ</td></tr>
+              <tr><td>5. Regression</td><td>Multiple Linear Regression ប្រសិនបើសមស្រប និងបំពេញលក្ខខណ្ឌ</td><td>ពិនិត្យទំនាក់ទំនងរបស់អថេរឯករាជ្យជាច្រើនជាមួយអថេរអាស្រ័យ ព្រមទាំងអថេរគ្រប់គ្រង</td></tr>
+              <tr><td>6. របាយការណ៍</td><td>តារាង លទ្ធផលស្ថិតិ និងការពិភាក្សា</td><td>ឆ្លើយសំណួរស្រាវជ្រាវ និងសាកល្បងសម្មតិកម្ម</td></tr>
+            </tbody>
+          </table>
+          <h3>9.7 គំរូសមីការវិភាគ (ប្រសិនបើប្រើ Regression)</h3>
+          <div class="formula">PFP = β₀ + β₁IR + β₂PP + β₃DE + β₄IM + β₅Controls + ε</div>
+          <p>និយមន័យ៖ PFP = perceived financial performance; IR = inventory-record accuracy; PP = purchasing/planning practices; DE = damaged/expired-goods control; IM = inventory monitoring; Controls = អថេរគ្រប់គ្រងដែលបានជ្រើស; β = coefficients; ε = error term។ សមីការនេះជាគំរូប៉ុណ្ណោះ ហើយត្រូវកែតម្រូវតាមរចនាសម្ព័ន្ធទិន្នន័យ និងការណែនាំពីអ្នកជំនាញស្ថិតិ។</p>
+          <h3>9.8 សុពលភាព និងភាពជឿជាក់</h3>
+          <ul>
+            <li>ធានាថាសំណួរមួយៗវាស់អ្វីដែលចង់វាស់ និងស្របតាមនិយមន័យអថេរ។</li>
+            <li>ប្រើការពិនិត្យពីគ្រូណែនាំ ឬអ្នកជំនាញ និងសាកល្បងកម្រងសំណួរមុនពេលប្រមូលទិន្នន័យចម្បង។</li>
+            <li>ពិនិត្យភាពជឿជាក់នៃមាត្រដ្ឋាន និងរាយការណ៍លទ្ធផលតាមវិធីសាស្ត្រសមស្រប។</li>
+            <li>ពិនិត្យលក្ខខណ្ឌសម្រាប់ស្ថិតិដែលជ្រើសរើស រួមទាំង multicollinearity និងលំនាំ residual ប្រសិនបើប្រើ regression។</li>
+          </ul>
+        </section>
+
+        <section id="questionnaire">
+          <h2 class="section-title"><span class="num">10</span>កម្រងសំណួរគំរូ</h2>
+          <p>កម្រងសំណួរខាងក្រោមជាសេចក្តីព្រាងដើម្បីកែសម្រួលជាមួយគ្រូណែនាំ។ សំណួរមិនគួរសុំឱ្យបង្ហាញព័ត៌មានសម្ងាត់ ឬអត្តសញ្ញាណដែលមិនចាំបាច់ទេ។ អ្នកឆ្លើយសំណួរត្រូវអាចរំលងសំណួរដែលមិនចង់ឆ្លើយបាន ប្រសិនបើបែបបទស្រាវជ្រាវអនុញ្ញាត។</p>
+          <div class="info"><strong>សេចក្តីណែនាំ៖</strong> សូមជ្រើសរើសចម្លើយដែលស្របនឹងបទពិសោធន៍របស់អ្នក។ ព័ត៌មាននឹងត្រូវប្រើសម្រាប់គោលបំណងសិក្សាតែប៉ុណ្ណោះ និងរាយការណ៍ជាសរុប។ កុំសរសេរឈ្មោះបុគ្គល ឬព័ត៌មានសម្គាល់ក្រុមហ៊ុន ប្រសិនបើមិនចាំបាច់។</div>
+          <h3>ផ្នែក A៖ ព័ត៌មានទូទៅ</h3>
+          <ol>
+            <li>តួនាទីការងាររបស់អ្នក៖ អ្នកគ្រប់គ្រង / គណនេយ្យ / ហិរញ្ញវត្ថុ / ស្តុក / ទិញទំនិញ / ផ្សេងៗ។</li>
+            <li>រយៈពេលបទពិសោធន៍ក្នុងវិស័យលក់រាយ៖ តិចជាង ១ ឆ្នាំ / ១–៣ ឆ្នាំ / ៤–៦ ឆ្នាំ / លើស ៦ ឆ្នាំ។</li>
+            <li>រយៈពេលប្រតិបត្តិការរបស់អាជីវកម្ម៖ តិចជាង ៣ ឆ្នាំ / ៣–៥ ឆ្នាំ / លើស ៥ ឆ្នាំ / មិនចង់ឆ្លើយ។</li>
+            <li>ប្រព័ន្ធគ្រប់គ្រងស្តុកដែលប្រើ៖ សៀវភៅ/សន្លឹកតារាង / POS ឬ software / ប្រព័ន្ធរួមបញ្ចូលគណនេយ្យ / ផ្សេងៗ / មិនដឹង។</li>
+          </ol>
+          <h3>ផ្នែក B៖ ការគ្រប់គ្រងសារពើភណ្ឌ</h3>
+          <p class="small">សម្រាប់សំណួរខាងក្រោម សូមប្រើមាត្រដ្ឋាន ៥ កម្រិត៖ 1 = មិនយល់ស្របទាំងស្រុង; 2 = មិនយល់ស្រប; 3 = មិនប្រាកដ/មធ្យម; 4 = យល់ស្រប; 5 = យល់ស្របទាំងស្រុង។</p>
+          <div class="scale"><span>1<br>មិនយល់ស្រប<br>ទាំងស្រុង</span><span>2<br>មិនយល់ស្រប</span><span>3<br>មធ្យម</span><span>4<br>យល់ស្រប</span><span>5<br>យល់ស្រប<br>ទាំងស្រុង</span></div>
+          <h4>B1. ភាពត្រឹមត្រូវនៃកំណត់ត្រាស្តុក</h4>
+          <div class="question">B1.1 ការទទួលចូល និងចេញទំនិញត្រូវបានកត់ត្រាក្នុងប្រព័ន្ធទាន់ពេល។</div>
+          <div class="question">B1.2 កំណត់ត្រាស្តុកត្រូវបានផ្ទៀងផ្ទាត់ជាមួយចំនួនទំនិញជាក់ស្តែងជាប្រចាំ។</div>
+          <div class="question">B1.3 មានដំណើរការច្បាស់លាស់សម្រាប់កែតម្រូវភាពខុសគ្នានៃកំណត់ត្រាស្តុក។</div>
+          <h4>B2. ផែនការបញ្ជាទិញ និងបំពេញស្តុក</h4>
+          <div class="question">B2.1 ការបញ្ជាទិញទំនិញយកព័ត៌មានពីការលក់ ឬតម្រូវការរបស់អតិថិជនមកពិចារណា។</div>
+          <div class="question">B2.2 អាជីវកម្មមានវិធីកំណត់ពេល ឬកម្រិតស្តុកសម្រាប់បញ្ជាទិញឡើងវិញ។</div>
+          <div class="question">B2.3 បរិមាណបញ្ជាទិញត្រូវបានពិនិត្យឡើងវិញ ដើម្បីកាត់បន្ថយការខ្វះស្តុក និងស្តុកលើសកម្រិត។</div>
+          <h4>B3. ការគ្រប់គ្រងទំនិញខូចខាត និងផុតកំណត់</h4>
+          <div class="question">B3.1 ទំនិញដែលមានកាលបរិច្ឆេទផុតកំណត់ត្រូវបានត្រួតពិនិត្យជាប្រចាំ។</div>
+          <div class="question">B3.2 ទំនិញខូចខាត ឬមិនអាចលក់បាន ត្រូវបានបំបែក និងកត់ត្រាតាមនីតិវិធី។</div>
+          <div class="question">B3.3 បុគ្គលិកអនុវត្តវិធីរៀបចំទំនិញតាមកាលបរិច្ឆេទដែលសមស្របនឹងប្រភេទផលិតផល។</div>
+          <h4>B4. ការត្រួតពិនិត្យសារពើភណ្ឌ</h4>
+          <div class="question">B4.1 អាជីវកម្មមានការរាប់ស្តុកជាក់ស្តែងតាមកាលវិភាគដែលបានកំណត់។</div>
+          <div class="question">B4.2 ការកែប្រែចំនួនស្តុកត្រូវបានពិនិត្យ ឬអនុម័តដោយអ្នកមានសិទ្ធិ។</div>
+          <div class="question">B4.3 តួនាទីក្នុងការទទួលទំនិញ កត់ត្រា និងអនុម័តត្រូវបានបែងចែកតាមសមស្រប។</div>
+          <h3>ផ្នែក C៖ លទ្ធផលហិរញ្ញវត្ថុតាមការយល់ឃើញ</h3>
+          <p class="small">សំណួរផ្នែកនេះវាស់ការយល់ឃើញ មិនមែនជំនួសរបាយការណ៍ហិរញ្ញវត្ថុពិតប្រាកដទេ។</p>
+          <div class="question">C1 ការគ្រប់គ្រងសារពើភណ្ឌជួយកាត់បន្ថយការខាតបង់ពីទំនិញខូច ឬផុតកំណត់។</div>
+          <div class="question">C2 ការគ្រប់គ្រងស្តុកជួយកាត់បន្ថយការចំណាយដែលមិនចាំបាច់ទាក់ទងនឹងទំនិញ។</div>
+          <div class="question">C3 ការរៀបចំស្តុកបានល្អជួយឱ្យអាជីវកម្មមានទំនិញគ្រប់គ្រាន់សម្រាប់តម្រូវការអតិថិជន។</div>
+          <div class="question">C4 ព័ត៌មានស្តុកមានភាពត្រឹមត្រូវជួយឱ្យអ្នកគ្រប់គ្រងធ្វើសេចក្តីសម្រេចចិត្តផ្នែកចំណាយ និងទិញទំនិញបានល្អ។</div>
+          <div class="question">C5 ជាទូទៅ ការគ្រប់គ្រងសារពើភណ្ឌមានការរួមចំណែកវិជ្ជមានដល់លទ្ធផលហិរញ្ញវត្ថុរបស់អាជីវកម្ម។</div>
+          <h3>ផ្នែក D៖ សំណួរបើកចំហ (ជាជម្រើស)</h3>
+          <div class="question">D1 តើបញ្ហាធំបំផុតដែលអាជីវកម្មជួបប្រទះក្នុងការគ្រប់គ្រងសារពើភណ្ឌគឺអ្វី?</div>
+          <div class="question">D2 តើវិធានការអ្វីខ្លះអាចជួយកែលម្អការគ្រប់គ្រងស្តុក និងកាត់បន្ថយការខាតបង់?</div>
+          <div class="notice"><strong>មុនប្រើជាផ្លូវការ៖</strong> ពិនិត្យសំណួរជាមួយគ្រូណែនាំ និងសាកល្បងកម្រងសំណួរ។ ប្រសិនបើអ្នកចង់បង្កើតពិន្ទុរួមសម្រាប់ construct នីមួយៗ ត្រូវកំណត់ច្បាស់ថា item ណាខ្លះបញ្ចូលគ្នា ហើយពិនិត្យភាពជឿជាក់ និងសុពលភាពតាមវិធីដែលសមស្រប។</div>
+        </section>
+
+        <section id="chapters">
+          <h2 class="section-title"><span class="num">11</span>គ្រោងសារណា ៥ ជំពូក</h2>
+          <p>គ្រោងខាងក្រោមអាចប្រើសម្រាប់ Proposal និងកែតម្រូវតាមការណែនាំរបស់សាកលវិទ្យាល័យ។ ចុចលើចំណងជើងជំពូកដើម្បីបង្ហាញ ឬបិទមាតិកា។</p>
+          <details class="chapter" open>
+            <summary>ជំពូកទី១៖ សេចក្តីផ្តើម (Introduction)</summary>
+            <div class="inside"><ol>
+              <li>សាវតានៃការសិក្សា</li>
+              <li>បញ្ហានៃការស្រាវជ្រាវ</li>
+              <li>គោលបំណងនៃការស្រាវជ្រាវ</li>
+              <li>សំណួរស្រាវជ្រាវ</li>
+              <li>សម្មតិកម្មស្រាវជ្រាវ</li>
+              <li>វិសាលភាព និងដែនកំណត់នៃការសិក្សា</li>
+              <li>សារៈសំខាន់នៃការសិក្សា</li>
+              <li>និយមន័យពាក្យគន្លឹះ</li>
+              <li>រចនាសម្ព័ន្ធសារណា</li>
+            </ol></div>
+          </details>
+          <details class="chapter" open>
+            <summary>ជំពូកទី២៖ ការពិនិត្យអក្សរសិល្ប៍ (Literature Review)</summary>
+            <div class="inside"><ol>
+              <li>គោលគំនិត និងនិយមន័យសារពើភណ្ឌ</li>
+              <li>ទ្រឹស្តី និងវិធីសាស្ត្រគ្រប់គ្រងសារពើភណ្ឌ</li>
+              <li>គោលការណ៍គណនេយ្យទាក់ទងនឹងសារពើភណ្ឌ និងថ្លៃដើម</li>
+              <li>ការគ្រប់គ្រងដើមទុនបង្វិល</li>
+              <li>គោលគំនិតលទ្ធផលហិរញ្ញវត្ថុ</li>
+              <li>ការស្រាវជ្រាវមុនៗក្នុងវិស័យពាក់ព័ន្ធ</li>
+              <li>ចន្លោះស្រាវជ្រាវ</li>
+              <li>ក្របខណ្ឌគំនិត និងការអភិវឌ្ឍសម្មតិកម្ម</li>
+            </ol></div>
+          </details>
+          <details class="chapter" open>
+            <summary>ជំពូកទី៣៖ វិធីសាស្ត្រស្រាវជ្រាវ (Research Methodology)</summary>
+            <div class="inside"><ol>
+              <li>រចនាស្រាវជ្រាវ និងវិធីសាស្ត្រសិក្សា</li>
+              <li>ប្រជាជនគោលដៅ និងគំរូស្រាវជ្រាវ</li>
+              <li>វិធីជ្រើសរើសគំរូ និងលក្ខខណ្ឌចូលរួម</li>
+              <li>ប្រភពទិន្នន័យ និងនីតិវិធីប្រមូលទិន្នន័យ</li>
+              <li>ការរៀបចំ និងការធ្វើតេស្តកម្រងសំណួរ</li>
+              <li>និយមន័យប្រតិបត្តិការរបស់អថេរ និងការវាស់វែង</li>
+              <li>វិធីសាស្ត្រវិភាគស្ថិតិ</li>
+              <li>សុពលភាព និងភាពជឿជាក់</li>
+              <li>ក្រមសីលធម៌ និងការរក្សាសម្ងាត់</li>
+            </ol></div>
+          </details>
+          <details class="chapter" open>
+            <summary>ជំពូកទី៤៖ លទ្ធផល និងការពិភាក្សា (Results and Discussion)</summary>
+            <div class="inside"><ol>
+              <li>ការពិពណ៌នាលក្ខណៈអ្នកឆ្លើយសំណួរ និងអាជីវកម្ម</li>
+              <li>ស្ថិតិពិពណ៌នានៃអថេរ</li>
+              <li>លទ្ធផលពិនិត្យភាពជឿជាក់នៃមាត្រដ្ឋាន</li>
+              <li>ការវិភាគទំនាក់ទំនងរវាងអថេរ</li>
+              <li>លទ្ធផល Regression ប្រសិនបើសមស្រប</li>
+              <li>ការធ្វើតេស្តសម្មតិកម្ម</li>
+              <li>ការពិភាក្សាលទ្ធផលធៀបនឹងការស្រាវជ្រាវមុនៗ</li>
+              <li>អត្ថន័យសម្រាប់ការគ្រប់គ្រង និង Accounting &amp; Finance</li>
+            </ol><p class="small">ជំពូកនេះត្រូវសរសេរក្រោយពេលប្រមូល និងវិភាគទិន្នន័យពិតប្រាកដប៉ុណ្ណោះ។ កុំបង្កើតទិន្នន័យ ឬលទ្ធផលសន្មត់ឱ្យដូចជាលទ្ធផលពិត។</p></div>
+          </details>
+          <details class="chapter" open>
+            <summary>ជំពូកទី៥៖ សេចក្តីសន្និដ្ឋាន និងអនុសាសន៍ (Conclusion and Recommendations)</summary>
+            <div class="inside"><ol>
+              <li>សង្ខេបលទ្ធផលសំខាន់ៗ</li>
+              <li>សេចក្តីសន្និដ្ឋានតាមគោលបំណងស្រាវជ្រាវ</li>
+              <li>អនុសាសន៍សម្រាប់អ្នកគ្រប់គ្រងផ្សារទំនើប</li>
+              <li>អត្ថប្រយោជន៍សម្រាប់វិស័យគណនេយ្យ និងហិរញ្ញវត្ថុ</li>
+              <li>ដែនកំណត់នៃការស្រាវជ្រាវ</li>
+              <li>សំណើសម្រាប់ការស្រាវជ្រាវនាពេលអនាគត</li>
+            </ol></div>
+          </details>
+          <h3>ផ្នែកបន្ថែមក្រោយជំពូកទី៥</h3>
+          <ul><li>ឯកសារយោង (References)</li><li>ឧបសម្ព័ន្ធ (Appendices)៖ កម្រងសំណួរ លិខិតសុំការអនុញ្ញាត និងឯកសារពាក់ព័ន្ធដែលអាចចែករំលែកបាន។</li><li>ទំព័រមុខ បញ្ជីតារាង បញ្ជីរូបភាព និងអក្សរកាត់តាមតម្រូវការរបស់សាកលវិទ្យាល័យ។</li></ul>
+        </section>
+
+        <section id="ethics">
+          <h2 class="section-title"><span class="num">12</span>ក្រមសីលធម៌ស្រាវជ្រាវ</h2>
+          <ul>
+            <li>សុំការអនុញ្ញាតពីសាកលវិទ្យាល័យ និងអាជីវកម្មមុនចែកកម្រងសំណួរ ឬសម្ភាសន៍។</li>
+            <li>ពន្យល់គោលបំណងស្រាវជ្រាវ និងទទួលការយល់ព្រមដោយស្ម័គ្រចិត្តពីអ្នកចូលរួម។</li>
+            <li>មិនបង្ខំឱ្យអ្នកចូលរួមឆ្លើយ និងអនុញ្ញាតឱ្យដកខ្លួនតាមលក្ខខណ្ឌដែលបានជម្រាប។</li>
+            <li>រក្សាទុកទិន្នន័យក្នុងទីតាំងមានសុវត្ថិភាព និងកំណត់អ្នកដែលអាចចូលប្រើបាន។</li>
+            <li>មិនបង្ហាញឈ្មោះអ្នកឆ្លើយសំណួរ ឬព័ត៌មានសម្ងាត់របស់ក្រុមហ៊ុនដោយគ្មានការអនុញ្ញាត។</li>
+            <li>រាយការណ៍លទ្ធផលតាមទិន្នន័យពិត មិនកែបំភ្លៃ មិនបង្កើតចម្លើយ និងមិនលាក់លទ្ធផលដែលមិនស្របនឹងសម្មតិកម្ម។</li>
+            <li>បង្ហាញប្រភពគំនិត និងឯកសារយោងឱ្យត្រឹមត្រូវ ដើម្បីជៀសវាងការលួចចម្លងស្នាដៃ។</li>
+          </ul>
+        </section>
+
+        <section id="limitations">
+          <h2 class="section-title"><span class="num">13</span>ដែនកំណត់ដែលរំពឹងទុក</h2>
+          <ul>
+            <li><strong>ការចូលដល់អាជីវកម្ម៖</strong> ក្រុមហ៊ុនខ្លះអាចមិនអនុញ្ញាតឱ្យប្រមូលទិន្នន័យ ឬសម្ភាសន៍បុគ្គលិក។</li>
+            <li><strong>ការខ្វះរបាយការណ៍ហិរញ្ញវត្ថុ៖</strong> ប្រសិនបើពឹងផ្អែកលើកម្រងសំណួរ លទ្ធផលហិរញ្ញវត្ថុគឺផ្អែកលើការយល់ឃើញ និងអាចមានភាពលំអៀង។</li>
+            <li><strong>គំរូស្រាវជ្រាវ៖</strong> គំរូដែលជ្រើសតាមភាពងាយស្រួលអាចមិនតំណាងឱ្យផ្សារទំនើបទាំងអស់នៅក្រុងព្រះសីហនុ។</li>
+            <li><strong>ភាពលំអៀងក្នុងចម្លើយ៖</strong> អ្នកឆ្លើយសំណួរអាចរាយការណ៍ពីការអនុវត្តតាមការចងចាំ ឬចង់បង្ហាញអាជីវកម្មក្នុងទិដ្ឋភាពវិជ្ជមាន។</li>
+            <li><strong>ការស្រាវជ្រាវឆ្លងកាត់ពេលវេលាតែមួយ៖</strong> វាអាចវាស់ទំនាក់ទំនងបាន ប៉ុន្តែមិនអាចបញ្ជាក់មូលហេតុ និងផលប៉ះពាល់បានយ៉ាងរឹងមាំដូចការរចនាស្រាវជ្រាវតាមពេលវេលា។</li>
+          </ul>
+          <p>ត្រូវពិពណ៌នាដែនកំណត់ពិតប្រាកដក្នុងរបាយការណ៍ចុងក្រោយ ហើយពន្យល់ពីវិធីដែលអ្នកប្រើដើម្បីកាត់បន្ថយផលប៉ះពាល់របស់វា។</p>
+        </section>
+
+        <section id="timeline">
+          <h2 class="section-title"><span class="num">14</span>ផែនការការងារគំរូ</h2>
+          <p>តារាងនេះជាគំរូផែនការប្រហែល ១២ សប្តាហ៍ប៉ុណ្ណោះ។ ត្រូវកែតម្រូវទៅតាមប្រតិទិនសិក្សា និងកាលវិភាគដែលគ្រូណែនាំអនុម័ត។</p>
+          <table>
+            <thead><tr><th>សកម្មភាព</th><th>សប្តាហ៍ស្នើ</th><th>លទ្ធផលដែលរំពឹង</th></tr></thead>
+            <tbody>
+              <tr><td>ជ្រើសរើសប្រធានបទ និងពិគ្រោះជាមួយគ្រូណែនាំ</td><td>1</td><td>ចំណងជើងបណ្តោះអាសន្ន និងគោលដៅច្បាស់លាស់</td></tr>
+              <tr><td>ស្វែងរក និងពិនិត្យអក្សរសិល្ប៍</td><td>1–3</td><td>សេចក្តីសង្ខេបអក្សរសិល្ប៍ និងក្របខណ្ឌគំនិត</td></tr>
+              <tr><td>រៀបចំ Proposal និងកែសម្រួល</td><td>3–4</td><td>Proposal សម្រាប់ដាក់ជូន និងអនុម័ត</td></tr>
+              <tr><td>សុំការអនុញ្ញាត និងរៀបចំឧបករណ៍</td><td>4–5</td><td>លិខិតអនុញ្ញាត និងកម្រងសំណួរដែលបានពិនិត្យ</td></tr>
+              <tr><td>សាកល្បង និងកែសម្រួលកម្រងសំណួរ</td><td>6</td><td>កម្រងសំណួរចុងក្រោយ</td></tr>
+              <tr><td>ប្រមូលទិន្នន័យ</td><td>7–8</td><td>សំណុំទិន្នន័យដែលបានអនាមិក និងពិនិត្យ</td></tr>
+              <tr><td>សម្អាត និងវិភាគទិន្នន័យ</td><td>9</td><td>តារាងលទ្ធផលស្ថិតិ</td></tr>
+              <tr><td>សរសេរលទ្ធផល និងពិភាក្សា</td><td>10</td><td>សេចក្តីព្រាងជំពូកទី៤</td></tr>
+              <tr><td>សរសេរសន្និដ្ឋាន និងអនុសាសន៍</td><td>11</td><td>សេចក្តីព្រាងជំពូកទី៥</td></tr>
+              <tr><td>កែសម្រួល ចងក្រងឯកសារយោង និងពិនិត្យទម្រង់</td><td>12</td><td>សារណាចុងក្រោយសម្រាប់ដាក់ជូន</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="company-letter">
+          <h2 class="section-title"><span class="num">15</span>គំរូសារសុំការអនុញ្ញាតពី Foody KPS ឬផ្សារទំនើប</h2>
+          <p>អាចប្រើសារខាងក្រោមជាគំរូសម្រាប់ទាក់ទងក្រុមហ៊ុន។ កែតម្រូវឈ្មោះសាកលវិទ្យាល័យ ព័ត៌មានអ្នកស្រាវជ្រាវ និងលក្ខខណ្ឌស្នើសុំជាមុនពេលផ្ញើ។</p>
+          <div class="title-card">
+            <p><strong>ប្រធានបទ៖ សំណើសុំការអនុញ្ញាតប្រមូលទិន្នន័យសម្រាប់សារណាបរិញ្ញាបត្រជាន់ខ្ពស់</strong></p>
+            <p>ជូនចំពោះ អ្នកគ្រប់គ្រង Foody KPS Supermarket,</p>
+            <p>ខ្ញុំជានិស្សិតថ្នាក់បរិញ្ញាបត្រជាន់ខ្ពស់ ជំនាញ Accounting and Finance នៅ [ឈ្មោះសាកលវិទ្យាល័យ]។ ខ្ញុំកំពុងរៀបចំសារណាស្តីពី “Inventory Management Practices and Their Relationship with Perceived Financial Performance of Supermarkets in Sihanoukville, Cambodia”។</p>
+            <p>ខ្ញុំសូមគោរពស្នើសុំការអនុញ្ញាតពីក្រុមហ៊ុន ដើម្បីប្រមូលព័ត៌មានសម្រាប់គោលបំណងសិក្សា តាមរយៈកម្រងសំណួរ ឬការសម្ភាសន៍ខ្លីៗជាមួយបុគ្គលិកដែលមានតួនាទីពាក់ព័ន្ធនឹងការគ្រប់គ្រងស្តុក គណនេយ្យ ឬហិរញ្ញវត្ថុ។ ខ្ញុំមិនស្នើសុំទិន្នន័យសម្ងាត់ណាមួយដោយគ្មានការអនុញ្ញាតទេ ហើយនឹងរក្សាការសម្ងាត់ និងប្រើប្រាស់ព័ត៌មានតាមលក្ខខណ្ឌដែលក្រុមហ៊ុនយល់ព្រម។</p>
+            <p>ការចូលរួមគឺស្ម័គ្រចិត្ត ហើយលទ្ធផលនឹងត្រូវប្រើសម្រាប់គោលបំណងសិក្សាតែប៉ុណ្ណោះ។ ខ្ញុំអាចផ្តល់លិខិតបញ្ជាក់ពីសាកលវិទ្យាល័យ និងសេចក្តីសង្ខេបនៃគម្រោងជូនតាមការស្នើសុំ។</p>
+            <p>សូមអរគុណចំពោះពេលវេលា និងការពិចារណារបស់លោក/លោកស្រី។</p>
+            <p>ដោយក្តីគោរព,<br>[ឈ្មោះនិស្សិត]<br>[កម្មវិធីសិក្សា និងសាកលវិទ្យាល័យ]<br>[លេខទំនាក់ទំនង / អ៊ីមែល]<br>[ឈ្មោះគ្រូណែនាំ ប្រសិនបើបានអនុញ្ញាតឱ្យដាក់]</p>
+            <div class="no-print"><button class="btn" onclick="copyLetter()">ចម្លងគំរូសារ</button></div>
+          </div>
+        </section>
+
+        <section id="checklist">
+          <h2 class="section-title"><span class="num">16</span>បញ្ជីត្រួតពិនិត្យមុនដាក់ Proposal</h2>
+          <p>ធីកសម្គាល់ចំណុចដែលបានបញ្ចប់។ សញ្ញាធីកនឹងនៅក្នុងទំព័រនេះខណៈពេលដែលអ្នកកំពុងបើកឯកសារ ប៉ុន្តែមិនត្រូវបានរក្សាទុកក្រោយបិទកម្មវិធីរុករកដោយស្វ័យប្រវត្តិទេ។</p>
+          <div class="checklist">
+            <label><input type="checkbox"> ចំណងជើងត្រូវបានពិភាក្សា និងអនុម័តដោយគ្រូណែនាំ។</label>
+            <label><input type="checkbox"> បានបញ្ជាក់ថាអាចចូលដល់ផ្សារទំនើប និងអ្នកឆ្លើយសំណួរបាន។</label>
+            <label><input type="checkbox"> សាវតា និងបញ្ហាស្រាវជ្រាវមានឯកសារយោងដែលអាចផ្ទៀងផ្ទាត់បាន។</label>
+            <label><input type="checkbox"> គោលបំណង សំណួរស្រាវជ្រាវ និងសម្មតិកម្មត្រូវគ្នា។</label>
+            <label><input type="checkbox"> ក្របខណ្ឌគំនិត និងនិយមន័យអថេរមានភាពច្បាស់លាស់។</label>
+            <label><input type="checkbox"> ផែនការជ្រើសរើសគំរូ និងវិធីវិភាគស្ថិតិត្រូវបានពិនិត្យ។</label>
+            <label><input type="checkbox"> កម្រងសំណួរត្រូវបានពិនិត្យ និងសាកល្បងតាមការចាំបាច់។</label>
+            <label><input type="checkbox"> បានរៀបចំវិធីសុំការយល់ព្រម និងការរក្សាសម្ងាត់។</label>
+            <label><input type="checkbox"> ឯកសារយោង និងការដកស្រង់ត្រូវតាមស្តង់ដារសាកលវិទ្យាល័យ។</label>
+            <label><input type="checkbox"> ទម្រង់ទំព័រ ចំណងជើង តារាង និងឧបសម្ព័ន្ធត្រូវបានពិនិត្យ។</label>
+          </div>
+        </section>
+
+        <section id="final-recommendation">
+          <h2 class="section-title"><span class="num">✓</span>អនុសាសន៍ចុងក្រោយ</h2>
+          <p class="lead">សូមប្រើចំណងជើង “Inventory Management Practices and Their Relationship with Perceived Financial Performance of Supermarkets in Sihanoukville, Cambodia” ជាចំណងជើងបណ្តោះអាសន្នសម្រាប់ចាប់ផ្តើម Proposal។</p>
+          <p>ជំហានសំខាន់បំផុតបន្ទាប់គឺពិគ្រោះជាមួយគ្រូណែនាំ និងពិនិត្យថាតើអាចចូលដល់ផ្សារទំនើបចំនួនប៉ុន្មាន។ ប្រសិនបើអាចទទួលបានទិន្នន័យហិរញ្ញវត្ថុជាក់ស្តែងដោយមានការអនុញ្ញាត អ្នកអាចពិចារណាកែប្រធានបទឱ្យវាស់សូចនាករហិរញ្ញវត្ថុពិត ដូចជា gross profit margin, inventory turnover ឬ operating cost ratios។ ប្រសិនបើមិនអាចទទួលបានទេ ត្រូវរក្សាពាក្យ “perceived financial performance” និងពន្យល់ដែនកំណត់ឱ្យច្បាស់។</p>
+        </section>
+      </main>
+    </div>
+    <footer>
+      <strong>សេចក្តីបញ្ជាក់</strong><br>
+      នេះជាគំរូសិក្សា និងសំណើស្រាវជ្រាវបឋម។ ចំណងជើង វិធីសាស្ត្រ កម្រងសំណួរ និងរចនាសម្ព័ន្ធត្រូវតែពិភាក្សា និងអនុម័តដោយគ្រូណែនាំ/សាកលវិទ្យាល័យ មុនពេលចាប់ផ្តើមប្រមូលទិន្នន័យ។ រក្សាការសម្ងាត់របស់អ្នកចូលរួម និងរាយការណ៍លទ្ធផលតាមភស្តុតាងពិត។
+    </footer>
+  </div>
+  <script>
+    function copyLetter() {
+      const text = `ប្រធានបទ៖ សំណើសុំការអនុញ្ញាតប្រមូលទិន្នន័យសម្រាប់សារណាបរិញ្ញាបត្រជាន់ខ្ពស់\n\nជូនចំពោះ អ្នកគ្រប់គ្រង Foody KPS Supermarket,\n\nខ្ញុំជានិស្សិតថ្នាក់បរិញ្ញាបត្រជាន់ខ្ពស់ ជំនាញ Accounting and Finance នៅ [ឈ្មោះសាកលវិទ្យាល័យ]។ ខ្ញុំកំពុងរៀបចំសារណាស្តីពី “Inventory Management Practices and Their Relationship with Perceived Financial Performance of Supermarkets in Sihanoukville, Cambodia”។\n\nខ្ញុំសូមគោរពស្នើសុំការអនុញ្ញាតពីក្រុមហ៊ុន ដើម្បីប្រមូលព័ត៌មានសម្រាប់គោលបំណងសិក្សា តាមរយៈកម្រងសំណួរ ឬការសម្ភាសន៍ខ្លីៗជាមួយបុគ្គលិកដែលមានតួនាទីពាក់ព័ន្ធនឹងការគ្រប់គ្រងស្តុក គណនេយ្យ ឬហិរញ្ញវត្ថុ។ ខ្ញុំមិនស្នើសុំទិន្នន័យសម្ងាត់ណាមួយដោយគ្មានការអនុញ្ញាតទេ ហើយនឹងរក្សាការសម្ងាត់ និងប្រើប្រាស់ព័ត៌មានតាមលក្ខខណ្ឌដែលក្រុមហ៊ុនយល់ព្រម។\n\nការចូលរួមគឺស្ម័គ្រចិត្ត ហើយលទ្ធផលនឹងត្រូវប្រើសម្រាប់គោលបំណងសិក្សាតែប៉ុណ្ណោះ។ ខ្ញុំអាចផ្តល់លិខិតបញ្ជាក់ពីសាកលវិទ្យាល័យ និងសេចក្តីសង្ខេបនៃគម្រោងជូនតាមការស្នើសុំ។\n\nសូមអរគុណចំពោះពេលវេលា និងការពិចារណារបស់លោក/លោកស្រី។\n\nដោយក្តីគោរព,\n[ឈ្មោះនិស្សិត]\n[កម្មវិធីសិក្សា និងសាកលវិទ្យាល័យ]\n[លេខទំនាក់ទំនង / អ៊ីមែល]\n[ឈ្មោះគ្រូណែនាំ ប្រសិនបើបានអនុញ្ញាតឱ្យដាក់]`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => alert('បានចម្លងគំរូសារ។')).catch(() => alert('សូមជ្រើសរើស និងចម្លងអត្ថបទដោយដៃ។'));
+      } else {
+        alert('សូមជ្រើសរើស និងចម្លងអត្ថបទដោយដៃ។');
+      }
+    }
+  </script>
+</body>
+</html>
